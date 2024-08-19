@@ -1,4 +1,3 @@
-
 *** Settings ***
 Documentation    lab-1 using docker
 Library    SeleniumLibrary
