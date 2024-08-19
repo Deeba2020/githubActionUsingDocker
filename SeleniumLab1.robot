@@ -1,6 +1,6 @@
 
 *** Settings ***
-Documentation    lab-1
+Documentation    lab-1 using docker
 Library    SeleniumLibrary
 Library    Collections
 
