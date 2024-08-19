@@ -38,7 +38,7 @@ jobs:
           pip install robotframework robotframework-seleniumlibrary
 
       - name: Run Robot Framework Tests
-        run: robot --loglevel DEBUG --outputdir output tests/
+        run: robot --loglevel DEBUG --outputdir output SeleniumLab1.robot/
 
       - name: Archive Test Reports
         if: always()
