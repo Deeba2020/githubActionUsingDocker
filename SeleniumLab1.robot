@@ -11,7 +11,7 @@ ${Welcome}      Welcome
 website opens correctly
     [Documentation]     check if website is open correctly
     [Tags]
-    Open Browser    browser=Chrome
+    Open Browser    browser=headlessChrome
     Go To   https://sverigesradio.se/goteborg
 
 
