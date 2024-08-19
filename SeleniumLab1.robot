@@ -1,4 +1,3 @@
-
 *** Settings ***
 Documentation    lab-1 using docker
 Library    SeleniumLibrary
@@ -26,7 +25,3 @@ click button
 *** Test Cases ***
 website opnes successfuly
     given website opens correctly
-
-
-click button
-    given click button
