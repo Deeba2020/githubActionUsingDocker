@@ -16,10 +16,10 @@ website opens correctly
     Go To   https://sverigesradio.se/goteborg
 
 
-click button
+click gothenburg radio
     [Documentation]     logging in
     [Tags]       VG_test
-    Click Element    https://sverigesradio.se/goteborg
+    Click Element    //span[@class='title']
 
 
 
@@ -29,4 +29,5 @@ website opnes successfuly
 
 
 click button
-    given click button
+    given website opens correctly
+    then click gothenburg radio
