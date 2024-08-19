@@ -18,7 +18,7 @@ ${passengerNum}     //input[@id='ms-opt-9']
 ${mypageButton}       //button[@id='mypage']
 ${cardNumber}      1234567812345678
 ${cardMonth}       6
-${cardYear}         2018
+${cardYear}         2019
 ${cardCVC}        123
 ${cardHolder}      Deba
 ${about-button}         //a[@id='about']
