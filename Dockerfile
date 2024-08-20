@@ -1,4 +1,4 @@
-# Base image with Python
+# Use a base image with Python
 FROM python:3.12
 
 # Install dependencies for Chrome and ChromeDriver
@@ -11,14 +11,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     xvfb \
     && rm -rf /var/lib/apt/lists/*
 
-# Install the Google Chrome signing key and repository
+# Install Google Chrome
 RUN wget https://dl-ssl.google.com/linux/linux_signing_key.pub -O /tmp/google.pub \
     && gpg --no-default-keyring --keyring /etc/apt/keyrings/google-chrome.gpg --import /tmp/google.pub \
     && echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list \
     && apt-get -y update \
     && apt-get install -y google-chrome-stable
 
-# Fetch and install the latest ChromeDriver
+# Fetch and install ChromeDriver
 ENV JSON_URL="https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json"
 ENV PLATFORM="linux64"
 
