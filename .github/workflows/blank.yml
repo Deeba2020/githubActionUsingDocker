@@ -24,14 +24,6 @@ jobs:
           apt-get update
           apt-get install -y google-chrome-stable
 
-      - name: Install ChromeDriver
-        run: |
-          CHROMEDRIVER_VERSION=$(google-chrome --version | awk '{print $3}' | sed 's/\.[0-9]*$//')
-          wget https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip
-          unzip chromedriver_linux64.zip
-          mv chromedriver /usr/local/bin/
-          rm chromedriver_linux64.zip
-
       - name: Install Dependencies
         run: |
           apt-get install -y \
@@ -52,6 +44,15 @@ jobs:
             libgconf-2-4 \
             libnss3-tools \
             libnspr4
+
+      - name: Install ChromeDriver
+        run: |
+          CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | sed 's/\.[0-9]*$//')
+          CHROMEDRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION})
+          wget https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip
+          mv chromedriver /usr/local/bin/
+          rm chromedriver_linux64.zip
 
       - name: Set up Robot Framework
         run: |
