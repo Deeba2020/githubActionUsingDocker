@@ -10,15 +10,14 @@ ${Welcome}      Welcome
 website opens correctly
     [Documentation]     check if website is open correctly
     [Tags]
-    Open Browser    browser=chrome headless=True
+    Open Browser    https://sverigesradio.se/goteborg    browser=chrome    options=--headless
     Go To   https://sverigesradio.se/goteborg
 
 click gothenburg radio
-    [Documentation]     logging innnnnnndrr
+    [Documentation]     logging in
     [Tags]
     Click Element    //span[@class='title']
 
-
 *** Test Cases ***
-website opnes successfuly
+website opens successfully
     given website opens correctly
