@@ -3,33 +3,33 @@ name: Robot Framework Tests on Push
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
-    # Use a Docker container for the job
-    container:
-      image: python:3.12
-      options: --privileged  # This is needed to install Chrome and ChromeDriver
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.12  # Specify the Python version you need
+
       - name: Install Google Chrome
         run: |
-          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
-          sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-          apt-get update
-          apt-get install -y google-chrome-stable
+          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
 
       - name: Install ChromeDriver
         run: |
           wget https://storage.googleapis.com/chrome-for-testing-public/127.0.6533.72/linux64/chromedriver-linux64.zip
           unzip chromedriver-linux64.zip
-          mv chromedriver-linux64/chromedriver /usr/local/bin/
+          sudo mv chromedriver-linux64/chromedriver /usr/local/bin/
           rm chromedriver-linux64.zip
 
       - name: Set up Robot Framework
@@ -38,7 +38,7 @@ jobs:
           pip install robotframework robotframework-seleniumlibrary
 
       - name: Run Robot Framework Tests
-        run: robot --loglevel DEBUG --outputdir output SeleniumLab1.robot/
+        run: robot --loglevel DEBUG --outputdir output SeleniumLab1.robot
 
       - name: Archive Test Reports
         if: always()
