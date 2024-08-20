@@ -16,7 +16,7 @@ website opens correctly
 
 
 click gothenburg radio
-    [Documentation]     logging innnnnnndrr
+    [Documentation]     logging innnnnnndrrsssss
     [Tags]
     Click Element    //span[@class='title']
 
