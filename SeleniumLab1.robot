@@ -16,6 +16,7 @@ click gothenburg radio
     Click Element    //span[@class='title']
     Click Element    //span[@class='title']
     Click Element    //span[@class='title']
+    Click Element    //span[@class='title']
 
 *** Test Cases ***
 website opens successfully
