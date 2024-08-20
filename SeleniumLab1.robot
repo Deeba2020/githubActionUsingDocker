@@ -4,29 +4,20 @@ Library    SeleniumLibrary
 Library    Collections
 
 *** Variables ***
-
-${Welcome}      Welcome
+${CHROME_OPTIONS}   --headless  --no-sandbox  --disable-dev-shm-usage  --disable-gpu
 
 *** Keywords ***
 website opens correctly
-    [Documentation]     check if website is open correctly
-    [Tags]
-    Open Browser    browser=headlessChrome
-    Go To   https://sverigesradio.se/goteborg
-
+    [Documentation]     Check if the website opens correctly.
+    Open Browser    https://sverigesradio.se/goteborg   chrome  options=${CHROME_OPTIONS}
 
 click gothenburg radio
-    [Documentation]     logging innnnnnndrr
-    [Tags]
+    [Documentation]     Click on the Gothenburg Radio link.
     Click Element    //span[@class='title']
 
-
-
 *** Test Cases ***
-website opnes successfuly
-    given website opens correctly
-
-
-#click button
-    #given website opens correctly
-    #then click gothenburg radio
+website opens successfully
+    [Documentation]     Test to ensure the website opens successfully.
+    website opens correctly
+    # click gothenburg radio    # Uncomment if you need to click after opening
+    Close Browser
