@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     fonts-liberation \
     libappindicator3-1 \
     libgtk-3-0 \
+    xvfb \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Google Chrome
@@ -57,5 +58,5 @@ WORKDIR /workspace
 # Copy your test files into the Docker image
 COPY SeleniumLab1.robot /workspace/
 
-# Default command to run Robot Framework tests
-CMD ["robot", "--loglevel", "DEBUG", "--outputdir", "output", "SeleniumLab1.robot"]
+# Default command to run Robot Framework tests with Xvfb
+CMD ["sh", "-c", "Xvfb :99 -screen 0 1280x1024x24 & robot --loglevel DEBUG --outputdir output SeleniumLab1.robot"]
