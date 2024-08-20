@@ -19,10 +19,10 @@ jobs:
 
       - name: Install Google Chrome
         run: |
-          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
-          sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-          apt-get update
-          apt-get install -y google-chrome-stable
+          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
 
       - name: Install Dependencies
         run: |
@@ -45,14 +45,12 @@ jobs:
             libnss3-tools \
             libnspr4
 
-      - name: Install ChromeDriver
+       - name: Install ChromeDriver
         run: |
-          # Fetch the latest compatible version of ChromeDriver for known Chrome version
-          CHROME_DRIVER_VERSION=127.0.6533.72
-          wget https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip
-          unzip chromedriver_linux64.zip
-          mv chromedriver /usr/local/bin/
-          rm chromedriver_linux64.zip
+          wget https://storage.googleapis.com/chrome-for-testing-public/127.0.6533.72/linux64/chromedriver-linux64.zip
+          unzip chromedriver-linux64.zip
+          sudo mv chromedriver-linux64/chromedriver /usr/local/bin/
+          rm chromedriver-linux64.zip
 
       - name: Set up Robot Framework
         run: |
