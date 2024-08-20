@@ -3,7 +3,7 @@ name: Robot Framework Tests on Push
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build-and-test:
