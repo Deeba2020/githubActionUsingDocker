@@ -4,7 +4,7 @@ Library    SeleniumLibrary
 Library    Collections
 
 *** Variables ***
-${CHROME_OPTIONS}   --headless  --no-sandbox  --disable-dev-shm-usage  --disable-gpu
+${CHROME_OPTIONS}    --headless --no-sandbox --disable-dev-shm-usage --disable-gpu
 
 *** Keywords ***
 website opens correctly
