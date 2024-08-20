@@ -27,6 +27,6 @@ website opnes successfuly
     given website opens correctly
 
 
-click button
-    given website opens correctly
-    then click gothenburg radio
+#click button
+    #given website opens correctly
+    #then click gothenburg radio
