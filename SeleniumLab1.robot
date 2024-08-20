@@ -25,7 +25,7 @@ click gothenburg radio
 
 *** Test Cases ***
 website opnes successfuly
-    given website opens correctlyyy
+    given website opens correctly
 
 
 #click button
