@@ -20,6 +20,7 @@ click gothenburg radio
     [Tags]
     Click Element    //span[@class='title']
     Click Element    //span[@class='title']
+    Click Element    //span[@class='title']
 
 
 
