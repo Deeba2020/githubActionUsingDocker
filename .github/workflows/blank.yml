@@ -17,9 +17,13 @@ jobs:
         run: |
           docker build -t robot-framework-tests .
 
+      - name: List files in workspace (Optional, for debugging)
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace robot-framework-tests ls -la /workspace
+
       - name: Run Robot Framework Tests
         run: |
-          docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace robot-framework-tests robot /SeleniumLab1.robot
+          docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace robot-framework-tests robot /workspace/SeleniumLab1.robot
 
       - name: Archive Test Reports
         if: always()
