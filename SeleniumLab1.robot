@@ -19,6 +19,7 @@ click gothenburg radio
     [Documentation]     logging innnnnnndrr
     [Tags]
     Click Element    //span[@class='title']
+    Click Element    //span[@class='title']
 
 
 
