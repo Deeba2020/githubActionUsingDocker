@@ -1,7 +1,7 @@
 # Use an official Python runtime as a parent image
-FROM python:3.12
+FROM python:3.12-slim
 
-# Install dependencies required for fetching and parsing JSON and for installing ChromeDriver
+# Install dependencies required for fetching and parsing JSON, and for installing ChromeDriver
 RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-utils \
     curl \
@@ -40,6 +40,9 @@ RUN set -eux; \
     wget -O chromedriver-${PLATFORM}.zip "${CHROMEDRIVER_URL}"; \
     unzip -j chromedriver-${PLATFORM}.zip -d /usr/local/bin; \
     rm chromedriver-${PLATFORM}.zip
+
+# Set display port to avoid crash
+ENV DISPLAY=:99
 
 # Set up virtual Python environment
 RUN python -m venv /opt/venv
