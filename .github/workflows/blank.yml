@@ -19,18 +19,18 @@ jobs:
 
       - name: Run Robot Framework Tests
         run: |
-          docker run --rm -v ${{ github.workspace }}:/workspace robot-framework-tests
+          docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace robot-framework-tests robot /SeleniumLab1.robot
 
       - name: Archive Test Reports
         if: always()
         uses: actions/upload-artifact@v2
         with:
           name: robot-framework-reports
-          path: output/
+          path: /workspace/output/
 
       - name: Archive Additional Logs
         if: always()
         uses: actions/upload-artifact@v2
         with:
           name: additional-logs
-          path: output/*.log
+          path: /workspace/output/*.log
