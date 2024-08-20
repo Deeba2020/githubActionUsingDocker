@@ -10,7 +10,7 @@ ${Welcome}      Welcome
 website opens correctly
     [Documentation]     check if website is open correctly
     [Tags]
-    Open Browser    https://sverigesradio.se/goteborg    browser=chrome    options=--headless
+    Open Browser    https://sverigesradio.se/goteborg    browser=headlesschrome
     Go To   https://sverigesradio.se/goteborg
 
 click gothenburg radio
