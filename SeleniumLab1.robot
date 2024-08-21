@@ -1,33 +1,25 @@
 *** Settings ***
-Documentation    lab-1 using docker
-Library    SeleniumLibrary
-Library    Collections
+Documentation       Robot Framework sample test case
+Library     SeleniumLibrary
+
 
 *** Variables ***
-
-${Welcome}      Welcome
-
-*** Keywords ***
-website opens correctly
-    [Documentation]     check if website is open correctly
-    [Tags]
-    Open Browser    browser=headlessChrome
-    Go To   https://sverigesradio.se/goteborg
-
-
-click gothenburg radio
-    [Documentation]     logging innnnnnndrr
-    [Tags]
-    Click Element    //span[@class='title']
-
-
+${url_sample}               https://se.search.yahoo.com/?fr2=p:fprd,mkt:se
+${BROWSER}  headlesschrome
+${BROWSER_OPTIONS}  add_argument("--no-sandbox"); add_argument("--disable-gpu"); add_argument("window-size=1920,1080");
 
 *** Test Cases ***
-website opnes successfuly
-    given website opens correctly
+Sample test case with Chrome
+    Open Browser        browser=${BROWSER}      options=${BROWSER_OPTIONS}
+    Sleep               10s
+    Go To   ${url_sample}
+    Wait Until Page Contains   Inte sidan du förväntade dig?
 
 
-#click button
-    #given website opens correctly
-    #then click gothenburg radio
-    #then click gothenburg radio
+*** Keywords ***
+
+#new test case
+    #[Documentation]     
+    #[Tags]      
+    #Click Link 
+    #Click Link
