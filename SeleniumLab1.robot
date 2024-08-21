@@ -30,3 +30,4 @@ website opnes successfuly
 #click button
     #given website opens correctly
     #then click gothenburg radio
+    #then click gothenburg radio
