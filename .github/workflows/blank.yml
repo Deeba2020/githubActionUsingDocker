@@ -1,40 +1,36 @@
-name: Robot Framework Tests on Push
+name: Docker Image CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-  build-and-test:
+
+  build_and_test:
+
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
-      - name: Build Docker Image
-        run: |
-          docker build -t robot-framework-tests .
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
 
-      - name: List files in workspace (Optional, for debugging)
-        run: |
-          docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace robot-framework-tests ls -la /workspace
+    - name: Log in to GitHub Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run Robot Framework Tests
-        run: |
-          docker run --rm --shm-size=2g -v ${{ github.workspace }}:/workspace -w /workspace robot-framework-tests
+    - name: Build and push Docker image
+      run: |
+        docker buildx build --push \
+          --cache-from=type=registry,ref=ghcr.io/${{ github.repository }}/robot-container:cache \
+          --cache-to=type=registry,ref=ghcr.io/${{ github.repository }}/robot-container:cache,mode=max \
+          --tag ghcr.io/${{ github.repository }}/robot-container:latest .
 
-      - name: Archive Test Reports
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: robot-framework-reports
-          path: /workspace/output/
-
-      - name: Archive Additional Logs
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: additional-logs
-          path: /workspace/output/*.log
+    - name: Run Robot Framework tests
+      run: docker run -v ${{ github.workspace }}/tests:/tests ghcr.io/${{ github.repository }}/robot-container:latest robot SelenuimLab1.robot
